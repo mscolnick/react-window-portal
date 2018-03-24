@@ -26,8 +26,8 @@
     "prebuild": "rimraf dist",
     "build": "tsc --module commonjs && rollup -c rollup.config.ts && typedoc --out docs --target es6 --theme minimal --mode file src",
     "start": "rollup -c rollup.config.ts -w",
-    "test": "jest",
-    "test:watch": "jest --watch",
+    "test": "jest --config ./config/jest.config.js --rootDir ./",
+    "test:watch": "yarn test --watchAll",
     "test:prod": "yarn lint && yarn test -- --coverage --no-cache",
     "deploy-docs": "ts-node tools/gh-pages-publish",
     "report-coverage": "cat ./coverage/lcov.info | coveralls",
@@ -50,31 +50,6 @@
       "types": "conventional-commit-types",
       "helpMessage": "Use \"yarn commit\" instead, we use conventional-changelog format :) (https://github.com/commitizen/cz-cli)"
     }
-  },
-  "jest": {
-    "transform": {
-      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
-    },
-    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js"
-    ],
-    "coveragePathIgnorePatterns": [
-      "/node_modules/",
-      "/test/"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "branches": 90,
-        "functions": 95,
-        "lines": 95,
-        "statements": 95
-      }
-    },
-    "collectCoverage": true,
-    "mapCoverage": true
   },
   "devDependencies": {
     "@types/enzyme": "^3.1.9",
