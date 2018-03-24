@@ -12,7 +12,9 @@ export interface IWindowPortalProps {
     /** Window left. */
     left?: number;
     /** Ref handler that receives the created window. */
-    windowRef?: (ref: Window | null) => any;
+    windowRef?(ref: Window | null): void;
+    /** Callback invoked when the external window is being closed. */
+    onCloseWindow?(): void;
 }
 
 export class WindowPortal extends React.PureComponent<IWindowPortalProps> {
@@ -51,6 +53,10 @@ export class WindowPortal extends React.PureComponent<IWindowPortalProps> {
 
     public componentWillUnmount(): void {
         if (this.externalWindow) {
+            if (this.props.onCloseWindow) {
+                this.props.onCloseWindow();
+            }
+
             this.externalWindow.close();
         }
     }

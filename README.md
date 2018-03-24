@@ -15,21 +15,20 @@ Inspired by [Using a React 16 Portal to do something cool](https://hackernoon.co
 ```tsx
 import { WindowPortal } from "react-window-portal";
 
-export class MyComponent extends React.PureComponent<{}, {isOpen: boolean}> {
+export class MyComponent extends React.PureComponent<{}, { isOpen: boolean }> {
     public state = {
-        isOpen: false;
+        isOpen: false,
     };
 
     public render() {
         return (
             <div>
-              <button onClick={() => this.setState({isOpen: true})}>open window</button>
-              {this.state.isOpen && (
-                  <WindowPortal width={500} height={500}>
-                      <button onClick={() => this.setState({isOpen: false})}>close window</button>
-                  </WindowPortal>
-                  )
-              }
+                <button onClick={() => this.setState({ isOpen: true })}>open window</button>
+                {this.state.isOpen && (
+                    <WindowPortal width={500} height={500}>
+                        <button onClick={() => this.setState({ isOpen: false })}>close window</button>
+                    </WindowPortal>
+                )}
             </div>
         );
     }
