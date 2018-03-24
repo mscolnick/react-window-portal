@@ -1,0 +1,53 @@
+{
+    "defaultSeverity": "error",
+    "extends": [
+        "tslint:latest",
+        "tslint-config-prettier",
+        "tslint-plugin-prettier"
+    ],
+    "rules": {
+        "ban": {
+            "options": [
+                ["_", "extend", "use object spread"],
+                ["_", "isNull", "use plain JS"],
+                ["_", "isDefined", "use plain JS"],
+                ["assert", "equal", "use assert.strictEqual instead"],
+                ["describe", "only", "should not be committed to repo"],
+                ["it", "only", "should not be committed to repo"],
+                ["Object", "getOwnPropertyNames", "use Object.keys()"],
+                ["test", "only", "should not be committed to repo"]
+            ]
+        },
+        "linebreak-style": {
+            "options": ["LF"]
+        },
+        "no-default-export": true,
+        "no-implicit-dependencies": {
+            "options": ["dev"]
+        },
+        "no-invalid-this": {
+            "options": ["check-function-in-method"]
+        },
+        "no-unnecessary-callback-wrapper": true,
+        "prettier": {
+            "options": [{
+                "printWidth": 120,
+                "tabWidth": 4,
+                "trailingComma": "all"
+            }]
+        },
+        "variable-name": {
+            "options": [
+                "allow-leading-underscore",
+                "allow-pascal-case",
+                "ban-keywords",
+                "check-format"
+            ]
+        }
+    },
+    "jsRules": {
+        "no-console": false,
+        "object-literal-sort-keys": false,
+        "trailing-comma": false
+    }
+}
