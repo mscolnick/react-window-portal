@@ -23,6 +23,13 @@ describe("WindowPortal", () => {
         expect(newWindow!.document.querySelector(".react-window-portal")).toBeTruthy();
     });
 
+    it("should call onCloseWindow when unmounted", () => {
+        const mockOnClose = jest.fn();
+        const component = shallow(<WindowPortal onCloseWindow={mockOnClose} height={100} width={100} />);
+        component.unmount();
+        expect(mockOnClose).toHaveBeenCalledTimes(1);
+    });
+
     it.skip("should mount its children in the container", () => {
         shallow(
             <WindowPortal windowRef={windowRef} height={100} width={100}>

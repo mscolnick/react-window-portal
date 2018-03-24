@@ -1,3 +1,5 @@
+// adapted from https://gist.github.com/davidgilbertson/ed3c8bb8569bc64b094b87aa88bed5fa
+
 function isCSSStyleSheet(styleSheet: StyleSheet): styleSheet is CSSStyleSheet {
     return (styleSheet as CSSStyleSheet).cssRules !== undefined;
 }
