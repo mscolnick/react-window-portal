@@ -1,8 +1,10 @@
 {
   "name": "react-window-portal",
   "version": "0.0.0",
-  "description": "",
-  "keywords": [],
+  "description": "React portal to another window",
+  "keywords": [
+    "react"
+  ],
   "main": "dist/react-window-portal.umd.js",
   "module": "dist/react-window-portal.es5.js",
   "typings": "dist/types/react-window-portal.d.ts",
@@ -12,7 +14,7 @@
   "author": "mscolnick <mscolnick@palantir.com>",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/mscolnick/react-window-portal"
   },
   "license": "MIT",
   "engines": {
@@ -20,22 +22,23 @@
   },
   "scripts": {
     "lint": "tslint -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
+    "lint-fix": "tslint -t codeFrame 'src/**/*.ts' 'test/**/*.ts' --fix",
     "prebuild": "rimraf dist",
-    "build": "tsc --module commonjs --outDir dist/lib && rollup -c rollup.config.ts && typedoc --out dist/docs --target es6 --theme minimal --mode file src",
+    "build": "tsc --module commonjs && rollup -c rollup.config.ts && typedoc --out docs --target es6 --theme minimal --mode file src",
     "start": "rollup -c rollup.config.ts -w",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:prod": "npm run lint && npm run test -- --coverage --no-cache",
+    "test:prod": "yarn lint && yarn test -- --coverage --no-cache",
     "deploy-docs": "ts-node tools/gh-pages-publish",
     "report-coverage": "cat ./coverage/lcov.info | coveralls",
     "commit": "git-cz",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "semantic-release": "semantic-release",
     "semantic-release-prepare": "ts-node tools/semantic-release-prepare",
     "precommit": "lint-staged"
   },
   "lint-staged": {
     "{src,test}/**/*.ts": [
-      "prettier --write --no-semi --single-quote",
+      "yarn lint-fix",
       "git add"
     ]
   },
@@ -45,7 +48,7 @@
     },
     "validate-commit-msg": {
       "types": "conventional-commit-types",
-      "helpMessage": "Use \"npm run commit\" instead, we use conventional-changelog format :) (https://github.com/commitizen/cz-cli)"
+      "helpMessage": "Use \"yarn commit\" instead, we use conventional-changelog format :) (https://github.com/commitizen/cz-cli)"
     }
   },
   "jest": {
@@ -74,36 +77,47 @@
     "mapCoverage": true
   },
   "devDependencies": {
-    "@types/jest": "^22.0.0",
-    "@types/node": "^8.0.0",
-    "@types/react": "^16.0.34",
-    "@types/react-dom": "^16.0.3",
-    "colors": "^1.1.2",
+    "@types/enzyme": "^3.1.9",
+    "@types/enzyme-adapter-react-16": "^1.0.2",
+    "@types/jest": "^22.2.2",
+    "@types/node": "^9.6.0",
+    "@types/react": "^16.0.40",
+    "@types/react-dom": "^16.0.4",
+    "@types/shelljs": "^0.7.8",
+    "colors": "^1.2.1",
     "commitizen": "^2.9.6",
     "coveralls": "^3.0.0",
-    "cross-env": "^5.0.1",
     "cz-conventional-changelog": "^2.0.0",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "husky": "^0.14.0",
-    "jest": "^22.0.2",
-    "lint-staged": "^6.0.0",
+    "jest": "^22.4.3",
+    "jest-enzyme": "^6.0.0",
+    "lint-staged": "^7.0.0",
     "lodash.camelcase": "^4.3.0",
-    "prettier": "^1.4.4",
-    "prompt": "^1.0.0",
-    "replace-in-file": "^3.0.0-beta.2",
+    "prettier": "^1.11.1",
+    "replace-in-file": "^3.4.0",
     "rimraf": "^2.6.1",
-    "rollup": "^0.53.0",
-    "rollup-plugin-commonjs": "^8.0.2",
-    "rollup-plugin-node-resolve": "^3.0.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "rollup": "^0.57.1",
+    "rollup-plugin-commonjs": "^9.1.0",
+    "rollup-plugin-node-resolve": "^3.3.0",
     "rollup-plugin-sourcemaps": "^0.4.2",
-    "rollup-plugin-typescript2": "^0.9.0",
-    "semantic-release": "^11.0.2",
-    "ts-jest": "^22.0.0",
-    "ts-node": "^4.1.0",
+    "rollup-plugin-typescript2": "^0.12.0",
+    "semantic-release": "^15.1.4",
+    "shelljs": "^0.8.1",
+    "ts-jest": "^22.4.2",
+    "ts-node": "^5.0.1",
     "tslint": "^5.8.0",
-    "tslint-config-prettier": "^1.1.0",
-    "tslint-config-standard": "^7.0.0",
-    "typedoc": "^0.9.0",
-    "typescript": "^2.6.2",
+    "tslint-config-prettier": "^1.10.0",
+    "tslint-plugin-prettier": "^1.3.0",
+    "typedoc": "^0.11.1",
+    "typescript": "^2.7.2",
     "validate-commit-msg": "^2.12.2"
+  },
+  "peerDependencies": {
+    "react": "16.x",
+    "react-dom": "16.x"
   }
 }

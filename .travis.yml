@@ -4,6 +4,7 @@ branches:
     - master
     - /^greenkeeper/.*$/
 cache:
+  npm: true
   yarn: true
   directories:
     - node_modules
